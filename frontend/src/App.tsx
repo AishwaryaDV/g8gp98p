@@ -1,20 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ForecastView from "./components/ForecastView";
 import AccuracyView from "./components/AccuracyView";
 
 type Tab = "forecast" | "accuracy";
+type Theme = "dark" | "light";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("forecast");
+  const [theme, setTheme] = useState<Theme>(
+    () => (localStorage.getItem("theme") as Theme) || "dark"
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <div className="app">
       <header className="site-header">
-        <h1>Day-Ahead Wind Forecast Portal</h1>
-        <p>
-          National wind generation forecast vs actuals (Elexon BMRS) for GB
-          day-ahead procurement, January 2026.
-        </p>
+        <div>
+          <h1>Day-Ahead Wind Forecast Portal</h1>
+          <p>
+            National wind generation forecast vs actuals (Elexon BMRS) for GB
+            day-ahead procurement, January 2026.
+          </p>
+        </div>
+        <button
+          className="theme-toggle"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          {theme === "dark" ? "Light mode" : "Dark mode"}
+        </button>
       </header>
 
       <nav className="tabs">

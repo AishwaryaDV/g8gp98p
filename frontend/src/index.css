@@ -12,6 +12,19 @@
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+[data-theme="light"] {
+  --bg: #efe6d3;          /* warm beige */
+  --panel: #faf4e6;
+  --panel-2: #f1e8d5;
+  --border: #ded0b4;
+  --text: #3a342a;
+  --muted: #8a7d66;
+  --accent: #2563eb;      /* forecast (blue) */
+  --actual: #15803d;      /* actual (green) */
+  --warn: #b45309;        /* bias / risk (amber) */
+  --danger: #dc2626;
+}
+
 * { box-sizing: border-box; }
 
 body {
@@ -19,6 +32,7 @@ body {
   background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .app {
@@ -26,6 +40,24 @@ body {
   margin: 0 auto;
   padding: 28px 20px 64px;
 }
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.theme-toggle {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.theme-toggle:hover { background: var(--panel-2); }
 
 .site-header h1 {
   font-size: 22px;

@@ -81,29 +81,29 @@ export default function ForecastView() {
             </p>
             <ResponsiveContainer width="100%" height={340}>
               <LineChart data={chartData} margin={{ top: 8, right: 16, bottom: 0, left: 0 }}>
-                <CartesianGrid stroke="#272e3a" strokeDasharray="3 3" />
-                <XAxis dataKey="time" stroke="#8b97a7" tick={{ fontSize: 12 }} />
-                <YAxis stroke="#8b97a7" tick={{ fontSize: 12 }} />
+                <CartesianGrid stroke="var(--border)" strokeDasharray="3 3" />
+                <XAxis dataKey="time" stroke="var(--muted)" tick={{ fontSize: 12, fill: "var(--muted)" }} />
+                <YAxis stroke="var(--muted)" tick={{ fontSize: 12, fill: "var(--muted)" }} />
                 <Tooltip
                   contentStyle={{
-                    background: "#161b22",
-                    border: "1px solid #272e3a",
+                    background: "var(--panel)",
+                    border: "1px solid var(--border)",
                     borderRadius: 8,
-                    color: "#e6edf3",
+                    color: "var(--text)",
                   }}
                 />
                 <Legend />
                 <Line
                   type="monotone"
                   dataKey="Forecast"
-                  stroke="#3b82f6"
+                  stroke="var(--accent)"
                   strokeWidth={2}
                   dot={false}
                 />
                 <Line
                   type="monotone"
                   dataKey="Actual"
-                  stroke="#22c55e"
+                  stroke="var(--actual)"
                   strokeWidth={2}
                   dot={false}
                 />

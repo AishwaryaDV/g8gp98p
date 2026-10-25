@@ -15,12 +15,12 @@ import {
 import { api, type MetricsResponse } from "../api";
 import SummaryCards from "./SummaryCards";
 
-const axis = { stroke: "#8b97a7", tick: { fontSize: 12 } };
+const axis = { stroke: "var(--muted)", tick: { fontSize: 12, fill: "var(--muted)" } };
 const tooltipStyle = {
-  background: "#161b22",
-  border: "1px solid #272e3a",
+  background: "var(--panel)",
+  border: "1px solid var(--border)",
   borderRadius: 8,
-  color: "#e6edf3",
+  color: "var(--text)",
 };
 
 export default function AccuracyView() {
@@ -61,14 +61,14 @@ export default function AccuracyView() {
         <p className="hint">MAE and bias per delivery day, MW.</p>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={dayData} margin={{ top: 8, right: 16, bottom: 0, left: 0 }}>
-            <CartesianGrid stroke="#272e3a" strokeDasharray="3 3" />
+            <CartesianGrid stroke="var(--border)" strokeDasharray="3 3" />
             <XAxis dataKey="date" {...axis} />
             <YAxis {...axis} />
             <Tooltip contentStyle={tooltipStyle} />
             <Legend />
-            <ReferenceLine y={0} stroke="#4b5563" />
-            <Line type="monotone" dataKey="MAE" stroke="#3b82f6" strokeWidth={2} dot={false} />
-            <Line type="monotone" dataKey="Bias" stroke="#f59e0b" strokeWidth={2} dot={false} />
+            <ReferenceLine y={0} stroke="var(--muted)" />
+            <Line type="monotone" dataKey="MAE" stroke="var(--accent)" strokeWidth={2} dot={false} />
+            <Line type="monotone" dataKey="Bias" stroke="var(--warn)" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -79,11 +79,11 @@ export default function AccuracyView() {
           <p className="hint">Mean absolute error, MW. Shows when the forecast is weakest.</p>
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={hourData} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
-              <CartesianGrid stroke="#272e3a" strokeDasharray="3 3" />
+              <CartesianGrid stroke="var(--border)" strokeDasharray="3 3" />
               <XAxis dataKey="hour" {...axis} interval={2} />
               <YAxis {...axis} />
-              <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "#1c232d" }} />
-              <Bar dataKey="MAE" fill="#3b82f6" radius={[3, 3, 0, 0]} />
+              <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "var(--panel-2)" }} />
+              <Bar dataKey="MAE" fill="var(--accent)" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -96,11 +96,11 @@ export default function AccuracyView() {
           </p>
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={histData} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
-              <CartesianGrid stroke="#272e3a" strokeDasharray="3 3" />
+              <CartesianGrid stroke="var(--border)" strokeDasharray="3 3" />
               <XAxis dataKey="bin" {...axis} interval={1} />
               <YAxis {...axis} />
-              <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "#1c232d" }} />
-              <Bar dataKey="count" fill="#22c55e" radius={[3, 3, 0, 0]} />
+              <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "var(--panel-2)" }} />
+              <Bar dataKey="count" fill="var(--actual)" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
